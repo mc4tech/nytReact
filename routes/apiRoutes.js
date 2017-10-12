@@ -2,6 +2,7 @@ const axios = require("axios");
 const router = require("express").Router();
 
 router.get("/recipes", (req, res) => {
+  console.log(req);
   axios
     .get({
     	url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
