@@ -29,7 +29,7 @@ class App extends Component {
   handleFormSubmit = event => {
     // When the form is submitted, prevent its default behavior, get articles update the articles state
     event.preventDefault();
-    API.getArticles(this.state.articleSearch)
+    API.getArticles(this.state.articleSearch, this.state.beginDate, this.state.endDate)
       .then(res => this.setState({ articles: res.data }))
       .catch(err => console.log(err));
   };
@@ -69,26 +69,7 @@ class App extends Component {
               </form>
             </Col>
           </Row>
-          <Row>
-            <Col size="xs-12">
-              {!this.state.articles.length ? (
-                <h1 className="text-center">No Articles to Display</h1>
-              ) : (
-                <ArticleList>
-                  {this.state.articles.map(article => {
-                    return (
-                      <ArticleListItem
-                        key={article.title}
-                        title={article.headline.main}
-                        href={article.web_url}
-                        content={article.snippet}
-                      />
-                    );
-                  })}
-                </ArticleList>
-              )}
-            </Col>
-          </Row>
+          
         </Container>
       </div>
     );
